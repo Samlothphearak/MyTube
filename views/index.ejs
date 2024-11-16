@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTube</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-900">
+
+ <!-- Header -->
+<header class="bg-gray-800 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold">MyTube</div>
+        <div class="flex space-x-4">
+            <input type="text" class="px-4 py-2 rounded-full bg-gray-700 text-white focus:outline-none" placeholder="Search...">
+            <!-- Login button with redirect -->
+            <a href="/login">
+                <button class="bg-blue-600 px-4 py-2 rounded-full text-white hover:bg-blue-700 focus:outline-none">
+                    Login
+                </button>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+    <!-- Main Content -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white h-screen p-4">
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:bg-gray-700 p-2 rounded">Home</a></li>
+                    <li><a href="#" class="hover:bg-gray-700 p-2 rounded">Trending</a></li>
+                    <li><a href="#" class="hover:bg-gray-700 p-2 rounded">Subscriptions</a></li>
+                    <li><a href="#" class="hover:bg-gray-700 p-2 rounded">Library</a></li>
+                    <li><a href="#" class="hover:bg-gray-700 p-2 rounded">History</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="flex-1 p-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Loop through videos array and display them -->
+                <% if (videos.length === 0) { %>
+                    <!-- Loading Placeholder -->
+                    <div class="col-span-full text-center py-10 text-gray-500">No videos available...</div>
+                <% } else { %>
+                    <% videos.forEach(function(video) { %>
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="<%= video.thumbnailUrl %>" alt="Video Thumbnail" class="w-full h-48 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h3 class="font-semibold text-lg truncate"><%= video.title %></h3>
+                                <p class="text-gray-600 text-sm truncate"><%= video.channel %></p>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
